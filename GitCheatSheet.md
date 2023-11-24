@@ -1,9 +1,9 @@
 
 # DEMO Cheat Sheet
 
-  ```bash
-  # Repository muss geklont werden.
-  git clone <ssh-Url-hier-angeben>
+```bash
+# Repository muss geklont werden.
+git clone <ssh-Url-hier-angeben>
 ```
 
 ## Erstellen und pushen eines Commits:
@@ -24,54 +24,56 @@
   ```
 
 ## Branching
-- Eines der Kernkonzepte ist das Branching
-- Erstellen wir nun einen neuen Branch (-b) (dieser Schritt wird in der Regel über Github/etc. gelöst);
-- bearbeiten unsere Datei;
-- committen sie;
-- und pushen sie in den neu erstellten Branch
-  ```bash
-    git checkout -b 'feature/1-main-erstes-feature'
-    echo 'Zweite Zeile' >> first_file.txt
-    git add first_file.txt
-    git commit -m "added feature #1 Zweite Zeile"
-    git push --set-upstream origin 'feature/1-main-erstes-feature'
-    git --no-pager log --pretty=oneline --graph --all 
-  ```
-- Nach der Implementierung des Features wird der Inhalt in den Dev/Main branch gemerged
-  ```bash
-  git checkout main 
-  git merge "feature/1-main-erstes-feature"
-  git push
-  ```
+Eines der Kernkonzepte ist das Branching
+```bash
+# Erstellen wir nun einen neuen Branch (-b) (dieser Schritt wird in der Regel über Github/etc. gelöst);
+git checkout -b 'feature/1-main-erstes-feature'
+# Bearbeiten unsere Datei;
+echo 'Zweite Zeile' >> first_file.txt
+# Hinzufügen des Files in die Staging-Area
+git add first_file.txt
+# Committen sie;
+git commit -m "added feature #1 Zweite Zeile"
+# Hinzufügen aller Commits zu unserem neu erstellten Branch
+git push --set-upstream origin 'feature/1-main-erstes-feature'
+git --no-pager log --pretty=oneline --graph --all 
+```
+Nach der Implementierung des Features wird der Inhalt in den Dev/Main branch gemerged
+```bash
+git checkout main 
+git merge "feature/1-main-erstes-feature"
+git push
+```
+
 ## Zurücksetzen auf einen bestimmten Commit
-  ```bash
-  #Commit-Id herausfinden
-  first_commit=$(git log --reverse | head -n 1 | cut -d " " -f 2)
-  echo "First Commit-Sha is: $first_commit"
-  #reset local branch to commit
-  git reset --hard $first_commit
-  git --no-pager log --pretty=oneline --graph
-  ```
-- Die Commit History des lokalen und des Remote-Branches unterscheiden sich jetzt
-- ein Push-Versuch mit veränderter Historie schlägt fehl:
-  ```bash
-  # Erstellen eines Files
-  echo 'Das ist das zweite File' > second_file.txt
-  # Hinzufügen des Files in die Staging-Area
-  git add second_file.txt
-  # Commit und Push
-  git commit -m 'Mein zweiter Commit'
-  git push
-  git --no-pager log --pretty=oneline --graph --all 
-  ```
+```bash
+#Commit-Id herausfinden
+first_commit=$(git log --reverse | head -n 1 | cut -d " " -f 2)
+echo "First Commit-Sha is: $first_commit"
+#reset local branch to commit
+git reset --hard $first_commit
+git --no-pager log --pretty=oneline --graph
+```
+Die Commit History des lokalen und des Remote-Branches unterscheiden sich jetzt
+ein Push-Versuch mit veränderter Historie schlägt fehl:
+```bash
+# Erstellen eines Files
+echo 'Das ist das zweite File' > second_file.txt
+# Hinzufügen des Files in die Staging-Area
+git add second_file.txt
+# Commit und Push
+git commit -m 'Mein zweiter Commit'
+git push
+git --no-pager log --pretty=oneline --graph --all 
+```
 
 ## Force-Push (GEFÄHRLICH, daher bei uns deaktiviert)
 - Sich unterscheidende Commit-Historien lassen sich mit einen force push auflösen:
 - Dabei wird dem Remote-Server die lokale Historie aufgezwungen
-  ```bash
-  # Force-Push mittels -f oder --force
-  git push -f
-  ```
+```bash
+# Force-Push mittels -f oder --force
+git push -f
+```
 
 
 ## Den letzten commit überschreiben
