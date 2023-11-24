@@ -26,7 +26,7 @@ git clone <ssh-Url-hier-angeben>
 ## Branching
 Eines der Kernkonzepte ist das Branching
 ```bash
-# Erstellen wir nun einen neuen Branch (-b) (dieser Schritt wird in der Regel über Github/etc. gelöst);
+# Erstellen wir nun einen neuen Branch (-b) (dieser Schritt wird in der Regel über Gitlab/etc. gelöst);
 git checkout -b 'feature/1-main-erstes-feature'
 # Bearbeiten unsere Datei;
 echo 'Zweite Zeile' >> first_file.txt
@@ -38,6 +38,10 @@ git commit -m "added feature #1 Zweite Zeile"
 git push --set-upstream origin 'feature/1-main-erstes-feature'
 git --no-pager log --pretty=oneline --graph --all 
 ```
+Mithilfe verschiedener Branches kann man an mehreren Zwischenständen gleichzeitig arbeiten
+
+**_Wichtig: Man muss alle Änderungen, die man in einem Branch behalten will committen, bevor man einen Branch wechselt. Sonst werden diese Änderungen mit in den anderen Branch genommen._** 
+
 Nach der Implementierung des Features wird der Inhalt in den Dev/Main branch gemerged
 ```bash
 git checkout main 
