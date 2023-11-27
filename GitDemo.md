@@ -1,5 +1,5 @@
 
-# DEMO Cheat Sheet
+# Git Demo
 
 ```bash
 # Repository muss geklont werden.
