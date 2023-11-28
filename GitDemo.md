@@ -167,11 +167,11 @@ andere Möglichkeit eines linearen Baum zu erzeugen
 
 
 
-## _"Rebase (GEFÄHRLICH!)"_
+## _Rebase (GEFÄHRLICH!)_
 Man kann lineare Bäume erzwingen.
 Dafür muss man statt eines merges ein sogenannten _rebase_ durchführen.
 
-Ein rebase nimmt eine Reihe con commits und setzt sie auf einen anderen Commit/Branch-head
+Ein rebase nimmt eine Reihe commits und setzt sie auf einen anderen Commit/Branch-head.
 
 Dabei ändern sich jedoch die Commit-SHAs es wird zwangsweise ein neuer Commit erstellt. 
 **_Das ist gefährlich!_**
@@ -183,7 +183,7 @@ Dabei ändern sich jedoch die Commit-SHAs es wird zwangsweise ein neuer Commit e
   git rebase "feature/3-verwaister-branch"
 ```
 
-Man kann mit rebase defacto jeden Commit-Tree zurechtbiegen, indem man eine Reihe von Commits auf einen älteren setzt
+Man kann mit rebase defacto jeden Commit-Tree zurechtbiegen, indem man eine Reihe von Commits auf einen älteren setzt.
 ```bash
   git rebase -i HEAD~3
 ```

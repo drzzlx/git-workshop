@@ -26,6 +26,8 @@ Das Holen des neusten Stands wird ebenfalls unterteilt in 2 Schritten:
 
 [akdb-git-workshop](https://github.com/drzzlx/akdb-workshop-git)
 
+[antons unterlagen](https://github.com/trinnovative/workshop-git)
+
 
 # Git Workflow & mögliche Zukunftsaussichten:
 Es werden zu beginn drei Arten von **Branches** definiert:
