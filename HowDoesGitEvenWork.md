@@ -14,6 +14,7 @@ Git verwaltet nur Snapshots von den einzelnen Dateien. Jedes mal, wenn committed
 Dabei wird ein Snapshot von allen Files gemacht, **die sich geändert haben** (!) und eine Referenz auf diesen Snapshot wird gespeichert.
 
 Git ist ein **stream** aus **Snapshots**.
+
 ![img.png](images/file-snapshots.png)
 
 Fast alle Git operationen können lokal ausgeführt werden. Das heißt: git ist kaum durch eine Netzwerkverbindung eingeschränkt.
