@@ -12,5 +12,5 @@
         2. Der Nightly Build Läuft nicht durch und die Tests verzögern 
         sich um 1 Tag
         
--------------------------------------------------------------------------------------
+
 
