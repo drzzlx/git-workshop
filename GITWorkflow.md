@@ -1,13 +1,27 @@
 # Wie wir mit git Arbeiten:
+
+Jeder commit erhält einen einzigartigen commit-hash. Jeder Commit kennt den (und nur den) vorherigen Commit.
+
+![img.png](images/git-history.png)
+
+Git unterscheidet zwischen 3 Dateizuständen:
+  - **Modified** (geändert aber noch nicht in lokaler Datenbank)
+  - **Staged** (bedeutet, dass eine geänderte Datei in ihrem gegenwärtigen Zustand für den nächsten
+Commit vorgemerkt ist)
+  - **Committed** (bedeutet, dass die Daten sicher in der lokalen Datenbank gespeichert sind)
+
+Wichtig für Kommandozeile: Nur Dateien in der Staging-Area ("index") werden für commit berücksichtigt
+
+
 ## commit & push:
 Wir werden zunächst den Workflow, den wir aus SVN kennen, beibehalten.
 
 Das heißt, wir arbeiten alle zusammen auf dem **"main"**-Branch:
 
 * Jeder holt sich den neusten Stand und checkt den **"main"**-Branch lokal bei sich aus.
-* Die Entwicklung findet lokal auf dem **"main"**-Branch statt.
+* Die Entwicklung findet lokal auf dem **"main"**-Branch (ursprünglich: trunk) statt.
 * Änderungen einchecken mit **"commit" & "push"**:
-    - Lokale Änderungen werden durch einen **commit** als Paket zusammengefasst und in eine Warteschlange verschoben.
+    - Lokale Änderungen werden durch einen **commit** einer Referenz versehen und in lokale Datenbank verschoben.
     - Durch einen **push** wird die entstandene Sammlung an **commits** veröffentlicht.
     
     **--> Es wird empfohlen, während der Bearbeitung von Tickets, so häufig wie möglich Zwischenstände zu committen. So entsteht eine feingranulare History aus kleinen Arbeitsschritten, die die Lesbarkeit und die Nachvollziehbarkeit der gemachten Änderungen verbessert.**
@@ -16,7 +30,7 @@ Außerdem können dadurch einzelnen Zwischenstände leichter wiederhergestellt w
 
 ## fetch & pull:
 Das Holen des neusten Stands wird ebenfalls unterteilt in 2 Schritten:
-* **"fetch"**: Hole alle Änderungen aus dem main, aber spiele sie noch nicht in meinen aktellen lokalen Stand ein!
+* **"fetch"**: Hole alle Änderungen vom remote und lege sie erstmal in der lokalen Datenbank ab.
 * **"pull"**: Spiele die Änderungen die durch **fetch** gekommen sind ein und gliedere alle Änderungen in mein bestehendes System ein.
 
 **--> Erlaubt es eingehende Änderungen zu begutachten, bevor der Code in meinen lokalen Stand eingespielt wird.**
