@@ -116,6 +116,9 @@ git --no-pager log --pretty=oneline --graph --all
 
 ## Merge
 Zusammenführen mehrerer Commits;
+
+![img.png](images/merge.png)
+
 Sehr häufiges Szenario: Merge-Konflikt durch überschneidende Dateiinhalte oder unterschiedliche Commit-Historien
 Lösung 1 auflösen der Merge-Konflikte (etwa in GitHub) im Ziel Branch
   - Gefährlich, was ist bei Fehlern?
@@ -168,12 +171,17 @@ andere Möglichkeit eines linearen Baum zu erzeugen
 
 
 ## _Rebase (GEFÄHRLICH!)_
+
+```git rebase``` und ```git merge``` lösen das selbe Problem, ABER...
+
+![img.png](images/rebase.png)
+
 Man kann lineare Bäume erzwingen.
 Dafür muss man statt eines merges ein sogenannten _rebase_ durchführen.
 
 Ein rebase nimmt eine Reihe commits und setzt sie auf einen anderen Commit/Branch-head.
 
-Dabei ändern sich jedoch die Commit-SHAs es wird zwangsweise ein neuer Commit erstellt. 
+Dabei ändern sich jedoch der Commit hash und es wird zwangsweise ein neuer Commit erstellt. 
 **_Das ist gefährlich!_**
 ```bash
  LAST_COMMIT=$(git log | head -n 2 | tail -n 1 | cut -f 2 -d " ")
