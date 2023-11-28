@@ -35,6 +35,9 @@ Das Holen des neusten Stands wird ebenfalls unterteilt in 2 Schritten:
 
 **--> Erlaubt es eingehende Änderungen zu begutachten, bevor der Code in meinen lokalen Stand eingespielt wird.**
     
+## Merge vs Rebase
+### Dazu gleich mehr. Spoiler: Wir werden _Rebase_ benutzen! 
+
 # DEMO:
 [board](https://miro.com/app/board/uXjVNLZIMNQ=/)
 
