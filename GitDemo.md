@@ -181,7 +181,7 @@ Dafür muss man statt eines merges ein sogenannten _rebase_ durchführen.
 
 Ein rebase nimmt eine Reihe commits und setzt sie auf einen anderen Commit/Branch-head.
 
-Dabei ändern sich jedoch der Commit hash und es wird zwangsweise ein neuer Commit erstellt. 
+Dabei ändern sich jedoch der Commit hash und es wird **zwangsweise** ein neuer Commit erstellt. 
 **_Das ist gefährlich!_**
 ```bash
  LAST_COMMIT=$(git log | head -n 2 | tail -n 1 | cut -f 2 -d " ")
@@ -195,8 +195,9 @@ Man kann mit rebase defacto jeden Commit-Tree zurechtbiegen, indem man eine Reih
 ```bash
   git rebase -i HEAD~3
 ```
-Niemals Rebases durchführen mit Commits, die schon gepushed sind!
-Der merge bleibt sicherer, einfacher und nachvollziehbarer!
+
+**_!!! Niemals Rebases durchführen mit Commits, die schon gepushed sind!
+Der merge bleibt sicherer, einfacher und nachvollziehbarer!!!_**
 
 
 
