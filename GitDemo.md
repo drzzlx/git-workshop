@@ -6,6 +6,9 @@
 git clone <ssh-Url-hier-angeben>
 ```
 
+
+
+
 ## Erstellen und pushen eines Commits:
 
   ```bash
@@ -22,6 +25,9 @@ git clone <ssh-Url-hier-angeben>
   # schauen wir uns nun die Commit-Historie an
   git --no-pager log --pretty=oneline --graph
   ```
+
+
+
 
 ## Branching
 Eines der Kernkonzepte ist das Branching
@@ -49,6 +55,9 @@ git merge "feature/1-main-erstes-feature"
 git push
 ```
 
+
+
+
 ## Zurücksetzen auf einen bestimmten Commit
 ```bash
 #Commit-Id herausfinden
@@ -71,65 +80,75 @@ git push
 git --no-pager log --pretty=oneline --graph --all 
 ```
 
+
+
+
 ## Force-Push (GEFÄHRLICH, daher bei uns deaktiviert)
-- Sich unterscheidende Commit-Historien lassen sich mit einen force push auflösen:
-- Dabei wird dem Remote-Server die lokale Historie aufgezwungen
+Sich unterscheidende Commit-Historien lassen sich mit einen force push auflösen:
+Dabei wird dem Remote-Server die lokale Historie aufgezwungen
 ```bash
 # Force-Push mittels -f oder --force
 git push -f
 ```
 
 
+
+
 ## Den letzten commit überschreiben
-- Überschreibe den letzten Commit und erstelle einen neuen Commit-Hash
-- Wenn der Commit bereits in einem Remote-Repo liegt, kommt es zum Konflict beim Push
-- Also ausschließlich bei lokalen nicht veröffentlichten Änderungen / oder eigenen Feature-Branches
-- ```bash   
+Überschreibe den letzten Commit und erstelle einen neuen Commit-Hash
+Wenn der Commit bereits in einem Remote-Repo liegt, kommt es zum Konflict beim Push
+Also ausschließlich bei lokalen nicht veröffentlichten Änderungen / oder eigenen Feature-Branches
+ ```bash   
   # Erstellen wir ein File
-  touch "ich_committe_zu_schnell.txt"
-  git add ich_committe_zu_schnell.txt
-  git commit -m "Der kommit war etwas voreilig"
-  git --no-pager log --pretty=oneline --graph --all
-  echo "die Änderung soll noch mit in den Commit" > ich_committe_zu_schnell.txt             
-  git add ich_committe_zu_schnell.txt
-  git commit --amend -m "Schnell noch den letzten Commit überschrieben"
-  git push
-  git --no-pager log --pretty=oneline --graph --all
+touch "ich_committe_zu_schnell.txt"
+git add ich_committe_zu_schnell.txt
+git commit -m "Der kommit war etwas voreilig"
+git --no-pager log --pretty=oneline --graph --all
+echo "die Änderung soll noch mit in den Commit" > ich_committe_zu_schnell.txt             
+git add ich_committe_zu_schnell.txt
+git commit --amend -m "Schnell noch den letzten Commit überschrieben"
+git push
+git --no-pager log --pretty=oneline --graph --all
   ```
 
+
+
+
 ## Merge
-- Zusammenführen mehrerer Commits
-- Sehr häufiges Szenario: Merge-Konflikt durch überschneidende Dateiinhalte oder unterschiedliche Commit-Historien
-- Lösung 1 auflösen der Merge-Konflikte (etwa in GitHub) im Ziel Branch
+Zusammenführen mehrerer Commits;
+Sehr häufiges Szenario: Merge-Konflikt durch überschneidende Dateiinhalte oder unterschiedliche Commit-Historien
+Lösung 1 auflösen der Merge-Konflikte (etwa in GitHub) im Ziel Branch
   - Gefährlich, was ist bei Fehlern?
   - Überlass ich das einen Code-Reviewer? (Nein!)
-  - es kann aber sein dass der Commit (etwa ein Hotfix im main) auch für weitere Branches wichtig ist
-- Lösung 2: ein back-merge
-  - statt mit dem eigentlichen Git-Flow zu mergen, machen wir das genau andersherum
-- generieren wir zunächst das Problem-Szenario
+  - Es kann aber sein dass der Commit (etwa ein Hotfix im main) auch für weitere Branches wichtig ist
+Lösung 2: ein back-merge
+  - Statt mit dem eigentlichen Git-Flow zu mergen, machen wir das genau andersherum
+
+generieren wir zunächst das Problem-Szenario
 ```bash
-  git checkout -b "feature/3-verwaister-branch"
-  echo "verwaistes feature von vor 3 Monaten" > file_1.txt
-  echo "verwaistes feature von vor 3 Monaten" > file_2.txt
-  git add file_1.txt file_2.txt
-  git commit -m "verwaistes feature von vor 3 Monaten"
-  git push --set-upstream origin "feature/3-verwaister-branch"
-  git checkout main
-  i=1
-  while [ $i -lt 10 ]; do echo "$i" > "file_$i.txt" && i=$[$i+1];  done 
-  git add *
-  git commit -m "in der zwischenzeit sind andere features eingeflossen"
-  git push
+git checkout -b "feature/3-verwaister-branch"
+echo "verwaistes feature von vor 3 Monaten" > file_1.txt
+echo "verwaistes feature von vor 3 Monaten" > file_2.txt
+git add file_1.txt file_2.txt
+git commit -m "verwaistes feature von vor 3 Monaten"
+git push --set-upstream origin "feature/3-verwaister-branch"
+git checkout main
+i=1
+while [ $i -lt 10 ]; do echo "$i" > "file_$i.txt" && i=$[$i+1];  done 
+git add *
+git commit -m "in der zwischenzeit sind andere features eingeflossen"
+git push
 ```
-- ein Mergeversuch würde in Mergekonflikten enden (und hätte einen non-linearen Baum zur Folge)
-- wir können uns entscheiden, was wir aus der Historie machen wollen
-- der Standardweg (back-merge):
+ein Mergeversuch würde in Mergekonflikten enden (und hätte einen non-linearen Baum zur Folge)
+wir können uns entscheiden, was wir aus der Historie machen wollen.
+
+Der Standardweg (back-merge):
 ```bash
   git checkout "feature/3-verwaister-branch"
   git merge main -m "Merged verwaister Branch" "feature/3-verwaister-branch"
 ```
-- jetzt müssen wir den merge Konflikt lösen, indem wir ```file_1.txt``` und ```file_2.txt``` händisch bearbeiten
-- anschließend:
+jetzt müssen wir den merge Konflikt lösen, indem wir ```file_1.txt``` und ```file_2.txt``` händisch bearbeiten
+anschließend:
 ```bash
   git add *
   git commit -m "Back-Merged main into feature/3-verwaister-branch"
@@ -139,17 +158,23 @@ git push -f
 
   git merge --no-ff 
 ```
-- Konsequenz: linearer Commit-Tree
-- andere Möglichkeit eines linearen Baum zu erzeugen
+Konsequenz: linearer Commit-Tree
+andere Möglichkeit eines linearen Baum zu erzeugen
 ```bash
   git --no-pager log --pretty=oneline --graph 
 ```
+
+
+
+
 ## _"Rebase (GEFÄHRLICH!)"_
-- man kann lineare Bäume erzwingen
-- dafür muss man statt eines merges ein sogenannten rebase durchführen
-- ein rebase nimmt eine Reihe con commits und setzt sie auf einen anderen Commit/Branch-head
-- Dabei ändern sich jedoch die Commit-SHAs es wird zwangsweise ein neuer Commit erstellt
-  - das ist gefährlich
+Man kann lineare Bäume erzwingen.
+Dafür muss man statt eines merges ein sogenannten _rebase_ durchführen.
+
+Ein rebase nimmt eine Reihe con commits und setzt sie auf einen anderen Commit/Branch-head
+
+Dabei ändern sich jedoch die Commit-SHAs es wird zwangsweise ein neuer Commit erstellt. 
+**_Das ist gefährlich!_**
 ```bash
  LAST_COMMIT=$(git log | head -n 2 | tail -n 1 | cut -f 2 -d " ")
  git reset --hard $LAST_COMMIT
@@ -158,18 +183,22 @@ git push -f
   git rebase "feature/3-verwaister-branch"
 ```
 
-- man kann mit rebase defacto jeden Commit-Tree zurechtbiegen, indem man eine Reihe von Commits auf einen älteren setzt
+Man kann mit rebase defacto jeden Commit-Tree zurechtbiegen, indem man eine Reihe von Commits auf einen älteren setzt
 ```bash
   git rebase -i HEAD~3
 ```
-- niemals mit Commits, die schon gepushed sind
-- Der merge bleibt sicherer, einfacher und nachvollziehbarer!
+Niemals Rebases durchführen mit Commits, die schon gepushed sind!
+Der merge bleibt sicherer, einfacher und nachvollziehbarer!
+
+
+
 
 ## _"Entfernen sensitiver oder großer Daten (GEFÄHRLICH!)"_
-- Sehr gefährlicher Eingriff
-- wir schreiben dabei die komplette Git-History ab dem Commit um
-- Jeder offene Branch wird bei einem Merge-Versuch Konflikte erzeugen
-- Erzeugen wir zunächst das Szenario
+Sehr gefährlicher Eingriff!
+
+Wir schreiben dabei die komplette Git-History ab dem Commit um. Jeder offene Branch wird bei einem Merge-Versuch Konflikte erzeugen
+
+Erzeugen wir zunächst das Szenario:
 ```bash
 tar cfvz mein_tar_archiv.tar.gz images/img.png
 git add mein_tar_archiv.tar.gz
@@ -201,15 +230,19 @@ git reflog expire --expire=now --all && git gc --prune=now --aggressive
 # jetzt müsste die Anderung noch gepushed werden
 # lieber nicht tun
 ```
-- Ganz ehrlich, das ist zu kompliziert
-- Da gibt es andere tools für: 
-  - https://docs.github.com/de/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository
-    - sorgt besser dafür, dass sowas nie im Remote-Branch landet 
-    - ansonsten nutzt bsplw. bfg 
-    ```bash
-       bfg --strip-blobs-with-ids blobs.txt your-repo.git
-    ```
-    - jetzt ist zwar die Commit-History neu beschrieben, lokal existiert jedoch noch der reflog und verwaiste blob-Objekte
-    ```bash 
-      git reflog expire --expire=now --all && git gc --prune=now --aggressive
-    ```
+Ganz ehrlich, das ist zu kompliziert...
+
+Da gibt es andere tools für: 
+
+https://docs.github.com/de/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository
+
+Sorgt besser dafür, dass sowas nie im Remote-Branch landet!
+Ansonsten nutzt bsplw. bfg 
+
+```bash
+bfg --strip-blobs-with-ids blobs.txt your-repo.git
+```
+Jetzt ist zwar die Commit-History neu beschrieben, lokal existiert jedoch noch der reflog und verwaiste blob-Objekte.
+```bash 
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
+```
