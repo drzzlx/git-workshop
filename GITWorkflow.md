@@ -39,12 +39,7 @@ Das Holen des neusten Stands wird ebenfalls unterteilt in 2 Schritten:
 ### Dazu gleich mehr. Spoiler: Wir werden _Rebase_ benutzen! 
 
 # DEMO:
-[board](https://miro.com/app/board/uXjVNLZIMNQ=/)
-
 [akdb-git-workshop](https://github.com/drzzlx/akdb-workshop-git)
-
-[antons unterlagen](https://github.com/trinnovative/workshop-git)
-
 
 # Git Workflow & mögliche Zukunftsaussichten:
 Es werden zu beginn drei Arten von **Branches** definiert:
