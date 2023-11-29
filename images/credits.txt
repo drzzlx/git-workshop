@@ -2,3 +2,6 @@ delta-based-vcs.png, file-snapshots.png
 https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F
 merge.png, rebase.png
 https://atlassian.com/de/git/tutorials/merging-vs-rebasing
+
+
+
