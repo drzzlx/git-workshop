@@ -1,1 +1,1 @@
-# Credits und weitere Informationen hier: images/credits.txt
+# Credits und weitere Informationen hier: _images/credits.txt_
