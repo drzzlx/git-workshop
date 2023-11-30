@@ -45,7 +45,7 @@ git push --set-upstream origin 'feature/1-main-erstes-feature'
 git --no-pager log --pretty=oneline --graph --all 
 ```
 Mithilfe verschiedener Branches kann man an mehreren Zwischenständen gleichzeitig arbeiten
-
+ 
 **_Wichtig: Man muss alle Änderungen, die man in einem Branch behalten will committen, bevor man einen Branch wechselt. Sonst werden diese Änderungen mit in den anderen Branch genommen._** 
 
 Nach der Implementierung des Features wird der Inhalt in den Dev/Main branch gemerged
