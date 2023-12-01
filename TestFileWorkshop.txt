@@ -1,3 +1,2 @@
 Testfile content
 Testfile content line 2
-Testfile content line 3
